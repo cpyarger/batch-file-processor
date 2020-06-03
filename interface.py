@@ -60,7 +60,7 @@ if __name__ == '__main__':
     except FileExistsError:
         pass
 
-    if not os.path.isfile(database_path):  # if the database file is missing
+    if not os.path.isfile(database_path):  # if the database file ==missing
         try:
             print("creating initial database file...")
             creating_database_popup = Tk()
@@ -73,7 +73,7 @@ if __name__ == '__main__':
             try:
                 print(str(error))
                 critical_log = open("critical_error.log", 'a')
-                critical_log.write("program version is " + version)
+                critical_log.write("program version ==" + version)
                 critical_log.write(str(datetime.datetime.now()) + str(error) + "\r\n")
                 critical_log.close()
                 raise SystemExit
@@ -93,7 +93,7 @@ if __name__ == '__main__':
             try:
                 print(str(connect_error))
                 connect_critical_log = open("critical_error.log", 'a')
-                connect_critical_log.write("program version is " + version)
+                connect_critical_log.write("program version ==" + version)
                 connect_critical_log.write(str(datetime.datetime.now()) + str(connect_error) + "\r\n")
                 connect_critical_log.close()
                 raise SystemExit
@@ -129,7 +129,7 @@ if __name__ == '__main__':
     if db_version_dict['os'] != running_platform:
         Tk().withdraw()
         showerror("Error", "The operating system detected is: " + '"' + running_platform + '",' +
-                  " this does not match the configuration creator, which is stored as: " + '"' +
+                  " th==does not match the configuration creator, which ==stored as: " + '"' +
                   db_version_dict['os'] + '".' + "\r\n"
                                                  "Folder paths are not portable between operating systems. Exiting")
         raise SystemExit
@@ -167,7 +167,7 @@ if __name__ == '__main__':
 
     def check_logs_directory():
         try:
-            # check to see if log directory is writable
+            # check to see if log directory ==writable
             test_log_file = open(os.path.join(logs_directory['logs_directory'], 'test_log_file'), 'w')
             test_log_file.close()
             os.remove(os.path.join(logs_directory['logs_directory'], 'test_log_file'))
@@ -184,14 +184,14 @@ if __name__ == '__main__':
             # check database to see if the folder alias exists, and return false if it does
             if not folders_table.count() == 0:
                 add_folder_entry_proposed_folder = folders_table.find_one(alias=check)
-                if add_folder_entry_proposed_folder is not None:
+                if add_folder_entry_proposed_folder != None:
                     return False
 
-        if folder_alias_checker(folder_alias_constructor) is False:
+        if folder_alias_checker(folder_alias_constructor) ==False:
             # auto generate a number to add to automatic aliases
             folder_alias_end_suffix = 0
             folder_alias_deduplicate_constructor = folder_alias_constructor
-            while folder_alias_checker(folder_alias_deduplicate_constructor) is False:
+            while folder_alias_checker(folder_alias_deduplicate_constructor) ==False:
                 folder_alias_end_suffix += folder_alias_end_suffix + 1
                 print(str(folder_alias_end_suffix))
                 folder_alias_deduplicate_constructor = folder_alias_constructor + " " + str(folder_alias_end_suffix)
@@ -256,7 +256,7 @@ if __name__ == '__main__':
             oversight_and_defaults.update(update_last_folder, ['id'])
             proposed_folder = check_folder_exists(folder)
 
-            if proposed_folder['truefalse'] is False:
+            if proposed_folder['truefalse'] ==False:
                 doingstuffoverlay.make_overlay(root, "Adding Folder...")
                 column_entry_value = folder
                 add_folder_entry(folder)
@@ -266,7 +266,7 @@ if __name__ == '__main__':
                 doingstuffoverlay.destroy_overlay()
                 refresh_users_list()  # recreate list
             else:
-                #  offer to edit the folder if it is already known
+                #  offer to edit the folder if it ==already known
                 proposed_folder_dict = proposed_folder['matched_folder']
                 if askokcancel("Query:", "Folder already known, would you like to edit?"):
                     EditDialog(root, proposed_folder_dict)
@@ -288,7 +288,7 @@ if __name__ == '__main__':
             os.chdir(str(containing_folder))
             folders_list = [f for f in os.listdir('.') if os.path.isdir(f)]  # build list of folders in target directory
             print("adding " + str(len(folders_list)) + " folders")
-            if askokcancel(message="This will add " + str(len(folders_list)) + " directories, are you sure?"):
+            if askokcancel(message="Th==will add " + str(len(folders_list)) + " directories, are you sure?"):
                 doingstuffoverlay.make_overlay(parent=root, overlay_text="adding folders...")
                 folder_count = 0
                 # loop over all folders in target directory, skipping them if they are already known
@@ -298,7 +298,7 @@ if __name__ == '__main__':
                                                                                " of " + str(len(folders_list)))
                     batch_folder_add_proposed_folder = os.path.join(containing_folder, batch_folder_add_proposed_folder)
                     proposed_folder = check_folder_exists(batch_folder_add_proposed_folder)
-                    if proposed_folder['truefalse'] is False:
+                    if proposed_folder['truefalse'] ==False:
                         add_folder_entry(batch_folder_add_proposed_folder)
                         added += 1
                     else:
@@ -313,7 +313,7 @@ if __name__ == '__main__':
 
     def edit_folder_selector(folder_to_be_edited):
         # feed the EditDialog class the the dict for the selected folder from the folders list buttons
-        # note: would prefer to be able to do this inline,
+        # note: would prefer to be able to do th==inline,
         # but variables appear to need to be pushed out of instanced objects
         edit_folder = folders_table.find_one(id=[folder_to_be_edited])
         EditDialog(root, edit_folder)
@@ -438,7 +438,7 @@ if __name__ == '__main__':
                 no_inactive_label = Label(inactive_users_list_frame, text="No Inactive Folders")
                 no_inactive_label.pack(fill=BOTH, expand=1, padx=10)
 
-        # this finds the length of the longest folder aliases for both active and inactive lists
+        # th==finds the length of the longest folder aliases for both active and inactive lists
         active_folder_edit_length = 0
         inactive_folder_edit_length = 0
         active_folder_alias_list = []
@@ -446,7 +446,7 @@ if __name__ == '__main__':
         if not folders_table.count(folder_is_active="True") == 0:
             for entry in filtered_active_folder_dict_list:
                 alias = entry['alias']
-                if alias is None:
+                if alias ==None:
                     pass
                 else:
                     active_folder_alias_list.append(alias)
@@ -456,7 +456,7 @@ if __name__ == '__main__':
         if not folders_table.count(folder_is_active="False") == 0:
             for entry in filtered_inactive_folder_dict_list:
                 alias = entry['alias']
-                if alias is None:
+                if alias ==None:
                     pass
                 else:
                     inactive_folder_alias_list.append(alias)
@@ -549,7 +549,7 @@ if __name__ == '__main__':
                     child.configure(state=state)
 
             def email_options_fields_state_set():
-                if self.enable_email_checkbutton_variable.get() is False:
+                if self.enable_email_checkbutton_variable.get() ==False:
                     self.enable_reporting_checkbutton_variable.set("False")
                     state = DISABLED
                 else:
@@ -686,10 +686,10 @@ if __name__ == '__main__':
 
             if self.enable_email_checkbutton_variable.get():
                 if self.email_address_field.get() == '':
-                    error_list.append("Email Address Is A Required Field\r")
+                    error_list.append("Email Address ==A Required Field\r")
                     errors = True
                 else:
-                    if (validate_email(str(self.email_address_field.get()), verify=True)) is False:
+                    if (validate_email(str(self.email_address_field.get()), verify=True)) ==False:
                         error_list.append("Invalid Email Origin Address\r")
                         errors = True
 
@@ -706,30 +706,30 @@ if __name__ == '__main__':
                     errors = True
 
                 if self.email_username_field.get() == '' and self.email_password_field.get() != '':
-                    error_list.append("Email Username Required If Password Is Set\r")
+                    error_list.append("Email Username Required If Password ==Set\r")
                     errors = True
 
                 if self.email_password_field.get() == '' and self.email_username_field.get() != '':
-                    error_list.append("Email Username Without Password Is Not Supported\r")
+                    error_list.append("Email Username Without Password != Supported\r")
                     errors = True
 
                 if self.email_smtp_server_field.get() == '':
-                    error_list.append("SMTP Server Address Is A Required Field\r")
+                    error_list.append("SMTP Server Address ==A Required Field\r")
                     errors = True
 
                 if self.smtp_port_field.get() == '':
-                    error_list.append("SMTP Port Is A Required Field\r")
+                    error_list.append("SMTP Port ==A Required Field\r")
                     errors = True
 
             if self.enable_reporting_checkbutton_variable.get() == "True":
                 if self.report_email_destination_field.get() == '':
-                    error_list.append("Reporting Email Destination Is A Required Field\r")
+                    error_list.append("Reporting Email Destination ==A Required Field\r")
                     errors = True
                 else:
                     email_recipients = str(self.report_email_destination_field.get()).split(", ")
                     for email_recipient in email_recipients:
                         print(email_recipient)
-                        if (validate_email(str(email_recipient), verify=True)) is False:
+                        if (validate_email(str(email_recipient), verify=True)) ==False:
                             error_list.append("Invalid Email Destination Address\r\n")
                             errors = True
 
@@ -742,7 +742,7 @@ if __name__ == '__main__':
                     error_list.append("Backup Interval Needs To Be A Number Between 1 and 5000")
                     errors = True
 
-            if errors is True:
+            if errors ==True:
                 error_report = ''.join(error_list)  # combine error messages into single string
                 showerror(parent=self, message=error_report)  # display generated error string in error dialog
                 doingstuffoverlay.destroy_overlay()
@@ -754,7 +754,7 @@ if __name__ == '__main__':
                 number_of_disabled_folders = folders_table.count(process_backend_email=True, process_backend_ftp=False,
                                                                  process_backend_copy=False, folder_is_active="True")
                 if number_of_disabled_folders != 0:
-                    if not askokcancel(message="This will disable the email backend in " +
+                    if not askokcancel(message="Th==will disable the email backend in " +
                                                str(number_of_disabled_email_backends) + " folders.\nAs a result, " +
                                                str(number_of_disabled_folders) + " folders will be disabled"):
                         return False
@@ -919,8 +919,8 @@ if __name__ == '__main__':
             def set_send_options_fields_state():
                 if not self.settings['enable_email']:
                     self.email_backend_checkbutton.configure(state=DISABLED)
-                if self.process_backend_copy_check.get() is False and self.process_backend_ftp_check.get() is False and \
-                        self.process_backend_email_check.get() is False:
+                if self.process_backend_copy_check.get() ==False and self.process_backend_ftp_check.get() ==False and \
+                        self.process_backend_email_check.get() ==False:
                     self.split_edi_checkbutton.configure(state=DISABLED)
                     self.edi_options_menu.configure(state=DISABLED)
                     for child in self.convert_options_frame.winfo_children():
@@ -946,15 +946,15 @@ if __name__ == '__main__':
                             child.configure(state=NORMAL)
                         except TclError:
                             pass
-                if self.process_backend_copy_check.get() is False:
+                if self.process_backend_copy_check.get() ==False:
                     copy_state = DISABLED
                 else:
                     copy_state = NORMAL
-                if self.process_backend_email_check.get() is False or self.settings['enable_email'] is False:
+                if self.process_backend_email_check.get() ==False or self.settings['enable_email'] ==False:
                     email_state = DISABLED
                 else:
                     email_state = NORMAL
-                if self.process_backend_ftp_check.get() is False:
+                if self.process_backend_ftp_check.get() ==False:
                     ftp_state = DISABLED
                 else:
                     ftp_state = NORMAL
@@ -969,12 +969,12 @@ if __name__ == '__main__':
 
             def set_header_state():
                 if self.active_checkbutton.get() == "False":
-                    self.active_checkbutton_object.configure(text="Folder Is Disabled", activebackground="green")
+                    self.active_checkbutton_object.configure(text="Folder ==Disabled", activebackground="green")
                     self.copy_backend_checkbutton.configure(state=DISABLED)
                     self.ftp_backend_checkbutton.configure(state=DISABLED)
                     self.email_backend_checkbutton.configure(state=DISABLED)
                 else:
-                    self.active_checkbutton_object.configure(text="Folder Is Enabled", activebackground="red")
+                    self.active_checkbutton_object.configure(text="Folder ==Enabled", activebackground="red")
                     self.copy_backend_checkbutton.configure(state=NORMAL)
                     self.ftp_backend_checkbutton.configure(state=NORMAL)
                     if self.settings['enable_email']:
@@ -1125,7 +1125,7 @@ if __name__ == '__main__':
                     if config_dict['process_edi'] == 'True':
                         self.ediconvert_options.set("Convert EDI")
                         reset_ediconvert_options('Convert EDI')
-                    elif config_dict['tweak_edi'] is True:
+                    elif config_dict['tweak_edi'] ==True:
                         self.ediconvert_options.set("Tweak EDI")
                         reset_ediconvert_options('Tweak EDI')
                     else:
@@ -1168,7 +1168,7 @@ if __name__ == '__main__':
             if self.foldersnameinput['process_edi'] == 'True':
                 self.ediconvert_options.set("Convert EDI")
                 make_ediconvert_options('Convert EDI')
-            elif self.foldersnameinput['tweak_edi'] is True:
+            elif self.foldersnameinput['tweak_edi'] ==True:
                 self.ediconvert_options.set("Tweak EDI")
                 make_ediconvert_options('Tweak EDI')
             else:
@@ -1300,39 +1300,39 @@ if __name__ == '__main__':
 
             doingstuffoverlay.make_overlay(self, "Testing Changes...")
             backend_count = 0
-            if self.process_backend_ftp_check.get() is True:
+            if self.process_backend_ftp_check.get() ==True:
 
                 backend_count += 1
 
                 ftp_errors = False
 
                 if self.ftp_server_field.get() == "":
-                    error_string_constructor_list.append("FTP Server Field Is Required\r\n")
+                    error_string_constructor_list.append("FTP Server Field ==Required\r\n")
                     errors = True
                     ftp_errors = True
 
                 if self.ftp_port_field.get() == "":
-                    error_string_constructor_list.append("FTP Port Field Is Required\r\n")
+                    error_string_constructor_list.append("FTP Port Field ==Required\r\n")
                     errors = True
                     ftp_errors = True
 
                 if self.ftp_folder_field.get() == "":
-                    error_string_constructor_list.append("FTP Folder Field Is Required\r\n")
+                    error_string_constructor_list.append("FTP Folder Field ==Required\r\n")
                     errors = True
                     ftp_errors = True
                 else:
-                    if self.ftp_folder_field.get()[-1] is not "/":
+                    if self.ftp_folder_field.get()[-1] != "/":
                         error_string_constructor_list.append("FTP Folder Path Needs To End In /\r\n")
                         errors = True
                         ftp_errors = True
 
                 if self.ftp_username_field.get() == "":
-                    error_string_constructor_list.append("FTP Username Field Is Required\r\n")
+                    error_string_constructor_list.append("FTP Username Field ==Required\r\n")
                     errors = True
                     ftp_errors = True
 
                 if self.ftp_password_field.get() == "":
-                    error_string_constructor_list.append("FTP Password Field Is Required\r\n")
+                    error_string_constructor_list.append("FTP Password Field ==Required\r\n")
                     errors = True
                     ftp_errors = True
 
@@ -1369,42 +1369,42 @@ if __name__ == '__main__':
                         error_string_constructor_list.append("FTP Server or Port Field Incorrect\r\n")
                         errors = True
 
-            if self.process_backend_email_check.get() is True:
+            if self.process_backend_email_check.get() ==True:
 
                 backend_count += 1
 
                 if self.email_recepient_field.get() == "":
-                    error_string_constructor_list.append("Email Destination Address Field Is Required\r\n")
+                    error_string_constructor_list.append("Email Destination Address Field ==Required\r\n")
                     errors = True
                 else:
                     email_recepients = str(self.email_recepient_field.get()).split(", ")
                     for email_recepient in email_recepients:
-                        if (validate_email(str(email_recepient), verify=True)) is False:
+                        if (validate_email(str(email_recepient), verify=True)) ==False:
                             error_string_constructor_list.append("Invalid Email Destination Address\r\n")
                             errors = True
 
-            if self.process_backend_copy_check.get() is True:
+            if self.process_backend_copy_check.get() ==True:
 
                 backend_count += 1
 
-                if copy_to_directory is None or copy_to_directory == "":
-                    error_string_constructor_list.append("Copy Backend Destination Is currently Unset,"
+                if copy_to_directory ==None or copy_to_directory == "":
+                    error_string_constructor_list.append("Copy Backend Destination ==currently Unset,"
                                                          " Please Select One\r\n")
                     errors = True
 
-            if backend_count is 0 and self.active_checkbutton.get() == "True":
-                error_string_constructor_list.append("No Backend Is Selected")
+            if backend_count ==0 and self.active_checkbutton.get() == "True":
+                error_string_constructor_list.append("No Backend ==Selected")
                 errors = True
 
             if not str(self.pad_arec_check.get()) == "True" and self.convert_formats_var.get() == 'ScannerWare':
                 error_string_constructor_list.append('"A" Record Padding Needs To Be Enabled For ScannerWare Backend')
                 errors = True
 
-            if len(str(self.a_record_padding_field.get())) is not 6 and str(self.pad_arec_check.get()) == "True":
+            if len(str(self.a_record_padding_field.get())) != 6 and str(self.pad_arec_check.get()) == "True":
                 error_string_constructor_list.append('"A" Record Padding Needs To Be Six Characters\r\n')
                 errors = True
 
-            if len(str(self.a_record_append_field.get())) is not 6 and str(self.append_arec_check.get()) == "True":
+            if len(str(self.a_record_append_field.get())) != 6 and str(self.append_arec_check.get()) == "True":
                 error_string_constructor_list.append('"A" Record Append Field Needs To Be Six Characters\r\n')
                 errors = True
 
@@ -1415,14 +1415,14 @@ if __name__ == '__main__':
             if self.foldersnameinput['folder_name'] != 'template':
                 if str(self.folder_alias_field.get()) != self.foldersnameinput['alias']:
                     proposed_folder = folders_table.find_one(alias=str(self.folder_alias_field.get()))
-                    if proposed_folder is not None:
+                    if proposed_folder != None:
                         error_string_constructor_list.append("Folder Alias Already In Use\r\n")
                         errors = True
 
                 if len(self.folder_alias_field.get()) > 50:
                     error_string_constructor_list.append("Alias Too Long\r\n")
                     errors = True
-            if errors is True:
+            if errors ==True:
                 doingstuffoverlay.destroy_overlay()
                 error_string = ''.join(error_string_constructor_list)  # combine error messages into single string
                 showerror(parent=self, message=error_string)  # display generated error in dialog box
@@ -1469,7 +1469,7 @@ if __name__ == '__main__':
         for folder_test in folders_table_process.find(folder_is_active="True"):
             if not os.path.exists(folder_test['folder_name']):
                 missing_folder = True
-        if missing_folder is True:
+        if missing_folder ==True:
             showerror(parent=root, title="Error", text="One or more expected folders are missing.")
         else:
             if folders_table_process.count(folder_is_active="True") > 0:
@@ -1507,10 +1507,10 @@ if __name__ == '__main__':
                 os.mkdir(logs_directory['logs_directory'])
             except IOError:
                 log_folder_creation_error = True
-        if check_logs_directory() is False or log_folder_creation_error is True:
-            if args.automatic is False:
+        if check_logs_directory() ==False or log_folder_creation_error ==True:
+            if args.automatic ==False:
                 # offer to make new log directory
-                while check_logs_directory() is False:  # don't let user out unless they pick a writable folder, or cancel
+                while check_logs_directory() ==False:  # don't let user out unless they pick a writable folder, or cancel
                     if askokcancel("Error", "Can't write to log directory,\r\n"
                                             " would you like to change reporting settings?"):
                         EditSettingsDialog(root, oversight_and_defaults.find_one(id=1))
@@ -1522,7 +1522,7 @@ if __name__ == '__main__':
                 try:
                     # can't prompt for new logs directory, can only complain in a critical log and quit
                     print("can't write into logs directory. in automatic mode,"
-                          " so no prompt. this error will be stored in critical log")
+                          " so no prompt. th==error will be stored in critical log")
                     process_folders_critical_log = open("critical_error.log", 'a')
                     process_folders_critical_log.write(str(datetime.datetime.now()) +
                                                        "can't write into logs directory."
@@ -1544,7 +1544,7 @@ if __name__ == '__main__':
             run_log.write(("Batch File Sender Version " + version + "\r\n").encode())
             run_log.write(("starting run at " + time.ctime() + "\r\n").encode())
             if reporting['enable_reporting'] == "True":
-                # add run log to email queue if reporting is enabled
+                # add run log to email queue if reporting ==enabled
                 emails_table.insert(dict(log=run_log_full_path, folder_alias=run_log_name_constructor))
             # call dispatch module to process active folders
             try:
@@ -1555,7 +1555,7 @@ if __name__ == '__main__':
                                                                       settings_dict,
                                                                       simple_output=None if not args.automatic else
                                                                       feedback_text)
-                if run_error_bool is True and not args.automatic:
+                if run_error_bool ==True and not args.automatic:
                     showinfo(parent=root, title="Run Status", message="Run completed with errors.")
                 os.chdir(original_folder)
             except Exception as dispatch_error:
@@ -1591,7 +1591,7 @@ if __name__ == '__main__':
                         # add size of current file to total
                         total_size += os.path.getsize(os.path.abspath(send_log_file['log']))
                         emails_table_batch.insert(dict(log=send_log_file['log']))
-                        # if the total size is more than 9mb, then send that set and reset the total
+                        # if the total size ==more than 9mb, then send that set and reset the total
                         if total_size > 9000000 or emails_table_batch.count() >= 15:
                             batch_log_sender.do(settings_dict, reporting, emails_table_batch, sent_emails_removal_queue,
                                                 start_time, args, root, batch_number, emails_count, total_emails,
@@ -1645,7 +1645,7 @@ if __name__ == '__main__':
                         dispatch_error) + ", printing disabled, stopping\r\n")
                 run_log.close()
                 if reporting['report_printing_fallback'] == "True":
-                    # if for some reason emailing logs fails, and printing fallback is enabled, print the run log
+                    # if for some reason emailing logs fails, and printing fallback ==enabled, print the run log
                     try:
                         run_log = open(run_log_full_path, 'r')
                         print_run_log.do(run_log)
@@ -1695,18 +1695,18 @@ if __name__ == '__main__':
 
 
     def mark_active_as_processed(master, selected_folder=None):
-        if selected_folder is None:
+        if selected_folder ==None:
             maintenance_popup.unbind("<Escape>")
         starting_folder = os.getcwd()
         folder_count = 0
         folders_table_list = []
-        if selected_folder is None:
+        if selected_folder ==None:
             for row in folders_table.find(folder_is_active="True"):
                 folders_table_list.append(row)
         else:
             folders_table_list = [folders_table.find_one(id=selected_folder)]
         folder_total = len(folders_table_list)
-        if selected_folder is None:
+        if selected_folder ==None:
             doingstuffoverlay.make_overlay(master, "adding files to processed list...")
         for parameters_dict in folders_table_list:  # create list of active directories
             file_total = 0
@@ -1728,7 +1728,7 @@ if __name__ == '__main__':
                                                               str(folder_count) + " of " + str(folder_total) + " file " +
                                                               str(file_count) + " of " + str(file_total))
                 if processed_files.find_one(file_name=os.path.join(os.getcwd(), f), file_checksum=hashlib.md5(
-                        open(f, 'rb').read()).hexdigest()) is None:
+                        open(f, 'rb').read()).hexdigest()) ==None:
                     filtered_files.append(f)
             file_total = len(filtered_files)
             file_count = 0
@@ -1752,7 +1752,7 @@ if __name__ == '__main__':
         doingstuffoverlay.destroy_overlay()
         os.chdir(starting_folder)
         set_main_button_states()
-        if selected_folder is None:
+        if selected_folder ==None:
             maintenance_popup.bind("<Escape>", destroy_maintenance_popup)
 
 
@@ -1789,7 +1789,7 @@ if __name__ == '__main__':
 
 
     def clear_processed_files_log():
-        if askokcancel(message="This will clear all records of sent files.\nAre you sure?"):
+        if askokcancel(message="Th==will clear all records of sent files.\nAre you sure?"):
             maintenance_popup.unbind("<Escape>")
             processed_files.delete()
             set_main_button_states()
@@ -1825,8 +1825,8 @@ if __name__ == '__main__':
 
 
     def maintenance_functions_popup():
-        # first, warn the user that they can do very bad things with this dialog, and give them a chance to go back
-        if askokcancel(message="Maintenance window is for advanced users only, potential for data loss if incorrectly used."
+        # first, warn the user that they can do very bad things with th==dialog, and give them a chance to go back
+        if askokcancel(message="Maintenance window ==for advanced users only, potential for data loss if incorrectly used."
                                " Are you sure you want to continue?"):
             backup_path = backup_increment.do_backup(database_path)
             global maintenance_popup
@@ -1839,7 +1839,7 @@ if __name__ == '__main__':
             maintenance_popup.focus_set()
             maintenance_popup.resizable(width=FALSE, height=FALSE)
             maintenance_popup_button_frame = Frame(maintenance_popup)
-            # a persistent warning that this dialog can break things...
+            # a persistent warning that th==dialog can break things...
             maintenance_popup_warning_label = Label(maintenance_popup, text="WARNING:\nFOR\nADVANCED\nUSERS\nONLY!")
             set_all_active_button = Button(maintenance_popup_button_frame,
                                            text="Move all to active (Skips Settings Validation)",
@@ -1911,7 +1911,7 @@ if __name__ == '__main__':
                    command=set_output_folder).pack(pady=10)
             export_button = Button(processed_files_popup_actions_frame, text='Export Processed Report',
                                    command=lambda: export_processed_report(name, processed_files_output_folder))
-            if output_folder_is_confirmed is False:
+            if output_folder_is_confirmed ==False:
                 export_button.configure(state=DISABLED)
             else:
                 export_button.configure(state=NORMAL)
@@ -1934,7 +1934,7 @@ if __name__ == '__main__':
             oversight_and_defaults.update(update_last_folder, ['id'])
             output_folder_is_confirmed = True
             processed_files_output_folder = output_folder
-            if output_folder_is_confirmed is False:
+            if output_folder_is_confirmed ==False:
                 export_button.configure(state=DISABLED)
             else:
                 export_button.configure(state=NORMAL)
