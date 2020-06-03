@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>main</class>
+ <widget class="QMainWindow" name="main">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>main</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QSplitter" name="splitter">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QPushButton" name="btn_add_directory">
+         <property name="text">
+          <string>Add Directory</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_batch_add_directories">
+         <property name="text">
+          <string>Batch Add Directories</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_set_defaults">
+         <property name="text">
+          <string>Set Defaults</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_edit_settings">
+         <property name="text">
+          <string>Edit Settings</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_maintaince">
+         <property name="text">
+          <string>Maintaince</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_processed_file_report">
+         <property name="text">
+          <string>Processed files report</string>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QSplitter" name="splitter_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QPushButton" name="btn_enable_resend">
+         <property name="text">
+          <string>Enable Resend</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_process_all_folders">
+         <property name="text">
+          <string>Process All Folders</string>
+         </property>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0">
+       <widget class="QListView" name="lv_inactive_folders"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_inactive_folders">
+        <property name="text">
+         <string>Inactive Folders</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_actions">
+        <property name="text">
+         <string>Actions</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_active_filters">
+        <property name="text">
+         <string>Active Folders</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QSplitter" name="splitter_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QPushButton" name="btn_act_activate">
+         <property name="text">
+          <string>Activate</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_act_edit">
+         <property name="text">
+          <string>Edit</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_act_send">
+         <property name="text">
+          <string>Send</string>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QListView" name="lv_active_folders"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="btn_update_filter">
+        <property name="text">
+         <string>Update Filter</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLineEdit" name="line_filter"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>main</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
